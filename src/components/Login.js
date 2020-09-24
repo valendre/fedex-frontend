@@ -2,9 +2,7 @@ import React from 'react';
 import useLogin from '../hooks/useLogin';
 
 export default function Login() {
-    const [
-        username, setUsername, setPassword, error, submitLogin, isLoggedin
-    ] = useLogin();
+    const [ username, setUsername, setPassword, error, submitLogin ] = useLogin();
 
     return (
         <>
