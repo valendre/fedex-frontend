@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useRequest from "../hooks/useRequest";
 import CohortSingleton from './CohortSingleton';
 
-export default function () {
+export default function (props) {
   const [requestWithToken] = useRequest();
   const [cohortsList, setCohortsList] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
