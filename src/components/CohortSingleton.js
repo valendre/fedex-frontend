@@ -17,7 +17,11 @@ export default function (props) {
   return (
     <div className="studentcontroller">
       {studentList.map((student) => (
-        <div>{student.username}</div>
+          <div>
+            <div>{student.id}</div>
+            <div>{student.username}</div>
+            <div>{student.suspiciousLevel}</div>
+          </div>
       ))}
     </div>
   );

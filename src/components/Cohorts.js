@@ -22,8 +22,6 @@ export default function () {
         placeholder="Select Option"
         onChange={(event) => {
           setSelectedValue(event.target.value);
-          alert(event.target.value);
-          
         }}
       >
         <option value="">Select a cohort!</option>
@@ -31,7 +29,7 @@ export default function () {
           <option value={cohort.cohort_id}>{cohort.cohort_name}</option>
         ))}
       </select>
-      {selectedValue ? <h1>{selectedValue}</h1> : null}
+      {selectedValue ? <h2>{cohortsList[selectedValue-1].cohort_name}</h2> : null}
       {selectedValue ? <CohortSingleton id={selectedValue} /> : null}
     </>
   );
