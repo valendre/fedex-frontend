@@ -16,8 +16,8 @@ export default function (props) {
     }
     if (firstLoad) {
       fetchCohortMembers();
-      setFirstLoad(false);
     }
+    setFirstLoad(true);
   }, [props.id, message]);
 
   return (
@@ -41,6 +41,7 @@ export default function (props) {
               break;
             }
           }
+          setFirstLoad(false);
           setMessage(msg);
         }}
       />
