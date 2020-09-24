@@ -46,7 +46,7 @@ export default function (props) {
         }}
       />
       <div className="notSuspicious studentColumn">
-      <h3>Not suspicious</h3>
+      <h3>not_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 0).map((student) => (
         <div className="studentTab">
           <div>Id: {student.id}</div>
@@ -55,7 +55,7 @@ export default function (props) {
       ))}
       </div>
       <div className="slightlySuspicious studentColumn">
-      <h3>Slightly Suspicious</h3>
+      <h3>slightly_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 1).map((student) => (
         <div className="studentTab">
           <div>Id: {student.id}</div>
@@ -64,7 +64,7 @@ export default function (props) {
       ))}
       </div>
       <div className="suspicious studentColumn">
-      <h3>Very Suspicious</h3>
+      <h3>very_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 2).map((student) => (
         <div className="studentTab">
           <div>Id: {student.id}</div>

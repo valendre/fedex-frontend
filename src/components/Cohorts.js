@@ -33,7 +33,6 @@ export default function (props) {
           <option value={cohort.cohort_id}>{cohort.cohort_name}</option>
         ))}
       </select>
-      {selectedValue ? <h2>{cohortsList[selectedValue-1].cohort_name}</h2> : null}
       {selectedValue ? <button onClick={async() => {
          let req = await fetch('/cohort/download-links', {
           method: "POST",
@@ -47,7 +46,7 @@ export default function (props) {
 
         })
         console.log(req);
-      }}>!SEND EMAILS!</button> : null}
+      }}>send_emails!</button> : null}
       {selectedValue ? <CohortSingleton id={selectedValue} /> : null}
     </>
   );

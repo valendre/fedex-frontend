@@ -6,7 +6,7 @@ export default function Login() {
 
     return (
         <>
-            <h1>LizarDOS green brother app</h1>
+            <h1>LizarDOS green_brother_app</h1>
             <div className="small-form">
                 <form onSubmit={event => submitLogin(event)}>
                     <input
