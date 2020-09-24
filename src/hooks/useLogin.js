@@ -15,7 +15,7 @@ export default function () {
         if (username !== '' && password !== '') {
             axios
                 .post(`
-                ${config.backendUrl}/login`,
+                /login`,
                     {username, password,}
                 )
                 .then(response => {

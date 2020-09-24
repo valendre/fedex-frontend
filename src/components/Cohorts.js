@@ -5,20 +5,19 @@ import useRequest from "../hooks/useRequest";
 export default function () {
     const [requestWithToken] = useRequest();
     const [cohortsList, setCohortsList] = useState([]);
-    requestWithToken("GET", "/cohorts", {})
-        .then(response => {
-            console.log(response.cohorts);
-            setCohortsList(response.cohort);
-        })
 
     useEffect(()=>{
-        console.log('useEffect');
-    },[cohortsList])
+      async function fetchCohorts() {
+        let response = await requestWithToken("GET", "/cohorts", {});
+        setCohortsList(response.cohorts);
+      }
+      fetchCohorts();
+    },[])
 
 
     return (
         <>
-            <p>{cohortsList}</p>
+            {cohortsList.map(cohort => <div>{cohort.cohort_name}</div>)}
             <select name="cars" id="cars">
             </select>
         </>
