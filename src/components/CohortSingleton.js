@@ -12,7 +12,7 @@ export default function (props) {
       console.log(response);
     }
     fetchCohortMembers();
-  }, []);
+  }, [props.id]);
 
   return (
     <div className="studentcontroller">
