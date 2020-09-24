@@ -45,14 +45,33 @@ export default function (props) {
           setMessage(msg);
         }}
       />
-
-      {studentList.map((student) => (
-        <div>
-          <div>{student.id}</div>
+      <div className="notSuspicious studentColumn">
+      <h3>Not suspicious</h3>
+      {studentList.filter(student => student.suspiciousLevel === 0).map((student) => (
+        <div className="studentTab">
+          <div>Id: {student.id}</div>
           <div>{student.username}</div>
-          <div>{student.suspiciousLevel}</div>
         </div>
       ))}
+      </div>
+      <div className="slightlySuspicious studentColumn">
+      <h3>Slightly Suspicious</h3>
+      {studentList.filter(student => student.suspiciousLevel === 1).map((student) => (
+        <div className="studentTab">
+          <div>Id: {student.id}</div>
+          <div>{student.username}</div>
+        </div>
+      ))}
+      </div>
+      <div className="suspicious studentColumn">
+      <h3>Very Suspicious</h3>
+      {studentList.filter(student => student.suspiciousLevel === 2).map((student) => (
+        <div className="studentTab">
+          <div>Id: {student.id}</div>
+          <div>{student.username}</div>
+        </div>
+      ))}
+      </div>
     </div>
   );
 }

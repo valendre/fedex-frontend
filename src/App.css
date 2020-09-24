@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.studentcontroller {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+
+.studentColumn {
+  width: 33.33vw;
+}
+
+.studentTab {
+  display: flex;
+  justify-content: center;
+  margin: 2vw;
+}
+
+.studentTab div {
+  width: 100%;
+}
