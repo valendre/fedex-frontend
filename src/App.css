@@ -107,3 +107,17 @@ select, button, input {
   50%  {margin: 2.05vw; transform: rotate(1deg)}
   100% {margin: 1.95vw; transform: rotate(-1deg)}
 }
+
+.studentInfo {
+  border-radius: 0.35vw;
+  background-color: #024059;
+  width: 80vw;
+  padding: 2vw;
+  margin-top: 4vw;
+}
+
+.studentInfo h3 {
+  text-transform: capitalize;
+  margin: 0;
+  font-size: 2em;
+}
