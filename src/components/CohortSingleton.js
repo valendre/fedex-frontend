@@ -56,8 +56,7 @@ export default function (props) {
       {studentList.filter(student => student.suspiciousLevel === 0).map((student) => (
         <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
           <div>{student.username}</div>
-          <div>{student.suspiciousActivity} {student.memoryUsage}Kb</div>
-        </div>
+          <div>{student.suspiciousActivity}</div>        </div>
       ))}
       </div>
       <div className="slightlySuspicious studentColumn">
@@ -65,7 +64,8 @@ export default function (props) {
       {studentList.filter(student => student.suspiciousLevel === 1).map((student) => (
           <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
           <div>{student.username}</div>
-            <div>{student.suspiciousActivity} {student.memoryUsage}Kb</div>
+            <div>{student.suspiciousActivity +" => " +parseFloat(student.memoryUsage).toLocaleString('hu')} Kb</div>
+
           </div>
       ))}
       </div>
@@ -74,7 +74,7 @@ export default function (props) {
       {studentList.filter(student => student.suspiciousLevel === 2).map((student) => (
           <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
           <div>{student.username}</div>
-            <div>{student.suspiciousActivity} {student.memoryUsage}Kb</div>
+            <div>{student.suspiciousActivity +" => " +parseFloat(student.memoryUsage).toLocaleString('hu')} Kb</div>
           </div>
       ))}
       </div>

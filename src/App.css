@@ -121,3 +121,18 @@ select, button, input {
   margin: 0;
   font-size: 2em;
 }
+
+.table {
+  display: table;
+}
+.tableHead {
+  display: table-header-group;
+  font-weight: 700;
+}
+.tableRow {
+  display: table-row;
+}
+.column {
+  display: table-cell;
+  padding: 0.7vw;
+}
