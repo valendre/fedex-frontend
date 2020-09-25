@@ -15,7 +15,7 @@ export default function (props) {
       setStudentInfo(response);
     }
     fetchStudent();
-  }, []);
+  }, [props]);
 
   return (
     <div className="studentInfo">
