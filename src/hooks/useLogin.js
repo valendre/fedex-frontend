@@ -2,7 +2,6 @@ import axios from 'axios';
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
 import {logIn} from '../actions';
-import config from '../config';
 
 export default function () {
     const [username, setUsername] = useState('');
