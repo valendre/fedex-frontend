@@ -41,6 +41,8 @@ export default function (props) {
           for (let i = 0; i < studentListCopy.length; i++) {
             if (studentListCopy[i].id === msg.id) {
               studentListCopy[i].suspiciousLevel = msg.suspiciousLevel;
+              studentListCopy[i].suspiciousActivity = msg.suspiciousActivity;
+              studentListCopy[i].memoryUsage = msg.memoryUsage;
               setStudentList(studentListCopy);
               break;
             }
@@ -53,8 +55,8 @@ export default function (props) {
       <h3>not_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 0).map((student) => (
         <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
-          <div>Id: {student.id}</div>
           <div>{student.username}</div>
+          <div>{student.suspiciousActivity} {student.memoryUsage}Kb</div>
         </div>
       ))}
       </div>
@@ -62,18 +64,18 @@ export default function (props) {
       <h3>slightly_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 1).map((student) => (
           <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
-          <div>Id: {student.id}</div>
           <div>{student.username}</div>
-        </div>
+            <div>{student.suspiciousActivity} {student.memoryUsage}Kb</div>
+          </div>
       ))}
       </div>
       <div className="suspicious studentColumn">
       <h3>very_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 2).map((student) => (
           <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
-          <div>Id: {student.id}</div>
           <div>{student.username}</div>
-        </div>
+            <div>{student.suspiciousActivity} {student.memoryUsage}Kb</div>
+          </div>
       ))}
       </div>
     </div>

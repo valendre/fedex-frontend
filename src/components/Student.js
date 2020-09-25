@@ -22,13 +22,13 @@ export default function (props) {
       
       <h3>{studentInfo ? studentInfo.username : null}</h3>
       <h4>Processes</h4>
-      <ul>
+      <div className="table">
         {(studentInfo&&studentInfo.activities) ? studentInfo.activities.map((process) => (
-          <li>
+          <div>
             {"Name: " + process.name + "Memory usage: " + process.memoryUsage}
-          </li>
+          </div>
         )) : null}
-      </ul>
+      </div>
     </div>
   );
 }
