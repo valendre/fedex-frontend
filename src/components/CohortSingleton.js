@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import useRequest from "../hooks/useRequest";
 import SockJsClient from "react-stomp";
+import Student from "./Student";
+import {logOut} from "../actions";
 
 export default function (props) {
   const [requestWithToken] = useRequest();
   const [message, setMessage] = useState({});
   const [firstLoad, setFirstLoad] = useState(true);
   const [studentList, setStudentList] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(undefined);
 
   useEffect(() => {
     async function fetchCohortMembers() {
@@ -21,6 +24,7 @@ export default function (props) {
   }, [props.id, message]);
 
   return (
+      <>
     <div className="studentcontroller">
       <SockJsClient
         url="http://localhost:8080/websocket-fedex"
@@ -48,7 +52,7 @@ export default function (props) {
       <div className="notSuspicious studentColumn">
       <h3>not_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 0).map((student) => (
-        <div className="studentTab">
+        <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
           <div>Id: {student.id}</div>
           <div>{student.username}</div>
         </div>
@@ -57,7 +61,7 @@ export default function (props) {
       <div className="slightlySuspicious studentColumn">
       <h3>slightly_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 1).map((student) => (
-        <div className="studentTab">
+          <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
           <div>Id: {student.id}</div>
           <div>{student.username}</div>
         </div>
@@ -66,12 +70,14 @@ export default function (props) {
       <div className="suspicious studentColumn">
       <h3>very_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 2).map((student) => (
-        <div className="studentTab">
+          <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
           <div>Id: {student.id}</div>
           <div>{student.username}</div>
         </div>
       ))}
       </div>
     </div>
+    {selectedValue ? <Student id={selectedValue}/> : null}
+    </>
   );
 }
