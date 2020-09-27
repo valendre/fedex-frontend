@@ -56,7 +56,8 @@ export default function (props) {
       {studentList.filter(student => student.suspiciousLevel === 0).map((student) => (
         <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
           <div>{student.username}</div>
-          <div>{student.suspiciousActivity}</div>        </div>
+          <div>{student.suspiciousActivity}</div>
+        </div>
       ))}
       </div>
       <div className="slightlySuspicious studentColumn">

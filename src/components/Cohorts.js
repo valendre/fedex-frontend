@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import useRequest from "../hooks/useRequest";
 import CohortSingleton from './CohortSingleton';
@@ -11,14 +11,15 @@ export default function (props) {
     const authFromRedux = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
+    const getCohorts = useCallback(() => {
+        requestWithToken("GET", "/cohorts", {})
+            .then(response => setCohortsList(response.cohorts));
+    }, [requestWithToken]);
 
     useEffect(() => {
-        async function fetchCohorts() {
-            let response = await requestWithToken("GET", "/cohorts", {});
-            setCohortsList(response.cohorts);
-        }
-        fetchCohorts();
-    }, [selectedValue]);
+        getCohorts();
+    }, [getCohorts, selectedValue]);
+
     return (
         <>
             <select
@@ -31,7 +32,7 @@ export default function (props) {
             >
                 <option value="">Select a cohort!</option>
                 {cohortsList.map((cohort) => (
-                    <option value={cohort.cohort_id}>{cohort.cohort_name}</option>
+                    <option key={cohort.cohort_id} value={cohort.cohort_id}>{cohort.cohort_name}</option>
                 ))}
             </select>
             {selectedValue ? <button onClick={async () => {

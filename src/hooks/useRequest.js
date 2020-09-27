@@ -1,30 +1,26 @@
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux'
+import axios from "axios";
+import {logOut} from "../actions";
 
-export default function useRequest() {
+export default () => {
     const authFromRedux = useSelector(state => state.auth);
-
-    async function requestWithToken(method, endPoint, data) {
+    const dispatch = useDispatch();
+    function requestWithToken(method, endPoint, data) {
         if (authFromRedux.isLoggedIn) {
-            try {
-                let bearer = 'Bearer ' + authFromRedux.token;
-                const response = await fetch(endPoint, {
-                    method: method,
-                    cache: 'no-cache',
-                    headers: {
-                        'Authorization': bearer,
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Credentials': 'true',
-                        'Access-Control-Allow-Origin': 'http://localhost:8080',
-                    },
-                    redirect: 'follow',
-                    referrerPolicy: 'no-referrer',
-                });
-                const responseToReturn = await response.json();
-                console.log(responseToReturn);
-                return responseToReturn;
-            } catch (error) {
-                throw error;
+            if (method === 'GET') {
+                data = null;
             }
+            return axios({
+                method,
+                url: endPoint,
+                headers: {
+                    'Authorization': `Bearer ${authFromRedux.token}`,
+                    'Content-Type': 'application/json',
+                },
+                data,
+            })
+                .then(response => response.data)
+                .catch(() => dispatch(logOut()));
         }
         return undefined;
     }
