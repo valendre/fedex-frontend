@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import useRequest from "../hooks/useRequest";
 import SockJsClient from "react-stomp";
 import Student from "./Student";
-import {logOut} from "../actions";
 
 export default function (props) {
   const [requestWithToken] = useRequest();
@@ -12,13 +11,9 @@ export default function (props) {
   const [selectedValue, setSelectedValue] = useState(undefined);
 
   useEffect(() => {
-    async function fetchCohortMembers() {
-      let response = await requestWithToken("GET", "/cohort/" + props.id);
-      setStudentList(response.students);
-      console.log(response);
-    }
     if (firstLoad) {
-      fetchCohortMembers();
+      requestWithToken("GET", "/cohort/" + props.id)
+          .then(response => setStudentList(response.students))
     }
     setFirstLoad(true);
   }, [props.id, message]);
@@ -36,7 +31,6 @@ export default function (props) {
           console.log("Disconnected");
         }}
         onMessage={(msg) => {
-          console.log(msg);
           let studentListCopy = studentList;
           for (let i = 0; i < studentListCopy.length; i++) {
             if (studentListCopy[i].id === msg.id) {
@@ -54,7 +48,7 @@ export default function (props) {
       <div className="notSuspicious studentColumn">
       <h3>not_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 0).map((student) => (
-        <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
+        <div className="studentTab" key={student.id} onClick={() => {setSelectedValue(student.id)}}>
           <div>{student.username}</div>
           <div>{student.suspiciousActivity}</div>
         </div>
@@ -63,7 +57,7 @@ export default function (props) {
       <div className="slightlySuspicious studentColumn">
       <h3>slightly_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 1).map((student) => (
-          <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
+          <div className="studentTab" key={student.id} onClick={() => {setSelectedValue(student.id)}}>
           <div>{student.username}</div>
             <div>{student.suspiciousActivity +" => " +parseFloat(student.memoryUsage).toLocaleString('hu')} Kb</div>
 
@@ -73,7 +67,7 @@ export default function (props) {
       <div className="suspicious studentColumn">
       <h3>very_suspicious</h3>
       {studentList.filter(student => student.suspiciousLevel === 2).map((student) => (
-          <div className="studentTab" onClick={() => {setSelectedValue(student.id)}}>
+          <div className="studentTab" key={student.id} onClick={() => {setSelectedValue(student.id)}}>
           <div>{student.username}</div>
             <div>{student.suspiciousActivity +" => " +parseFloat(student.memoryUsage).toLocaleString('hu')} Kb</div>
           </div>

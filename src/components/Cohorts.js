@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import useRequest from "../hooks/useRequest";
 import CohortSingleton from './CohortSingleton';
@@ -11,14 +11,10 @@ export default function (props) {
     const authFromRedux = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
-    const getCohorts = useCallback(() => {
-        requestWithToken("GET", "/cohorts", {})
-            .then(response => setCohortsList(response.cohorts));
-    }, [requestWithToken]);
-
     useEffect(() => {
-        getCohorts();
-    }, [getCohorts, selectedValue]);
+        requestWithToken("GET", "/cohorts", {})
+            .then(response => setCohortsList(response.cohorts))
+    }, [selectedValue]);
 
     return (
         <>

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import useRequest from "../hooks/useRequest";
-import SockJsClient from 'react-stomp';
-
 
 export default function (props) {
   const [requestWithToken] = useRequest();
@@ -28,7 +26,7 @@ export default function (props) {
               <div className="column">memory_usage</div>
           </div>
         {(studentInfo&&studentInfo.activities) ? studentInfo.activities.map((process) => (
-          <div className="tableRow">
+          <div className="tableRow" >
               <div className="column">{process.name}</div>
               <div className="column">{parseFloat(process.memoryUsage).toLocaleString('hu')} Kb</div>
           </div>
